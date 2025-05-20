@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rebel Power Bar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(to right, #000000, #730202);
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #fff;
+    }
+    header img {
+      max-width: 250px;
+      margin-bottom: 1rem;
+    }
+    .section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background: #1a1a1a;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 1rem;
+      transition: transform 0.5s ease;
+    }
+    .card:hover {
+      transform: translateX(10px);
+    }
+    .ingredients {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .ingredient {
+      background: #2c2c2c;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      transition: transform 0.5s ease;
+    }
+    .ingredient:hover {
+      transform: translateX(10px);
+    }
+    .ingredient img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .ingredient h3 {
+      margin: 0;
+      padding: 1rem;
+      font-size: 1.2rem;
+      background: #1a1a1a;
+    }
+    button {
+      background: #730202;
+      border: none;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #ff1a1a;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="REBEL.jpg" alt="Rebel Power Bar Logo">
+    <h1>Rebel Power Bar</h1>
+  </header>
+
+  <section class="section card">
+    <h2>Why Choose Rebel?</h2>
+    <ul>
+      <li>100% Vegan</li>
+      <li>Gluten Free</li>
+      <li>Natural Ingredients Only</li>
+      <li>45% Cacao Solids</li>
+      <li>No Artificial Sugar – Sweetened with Cane Sugar</li>
+    </ul>
+  </section>
+
+  <section class="section card">
+    <h2>Ingredients & Benefits</h2>
+    <div class="ingredients">
+      <div class="ingredient">
+        <img src="hazelnut.jpg" alt="Hazelnuts">
+        <h3>Hazelnut – Heart & Brain Health</h3>
+      </div>
+      <div class="ingredient">
+        <img src="almond.jpg" alt="Almonds">
+        <h3>Almond – Skin, Energy & Sugar Control</h3>
+      </div>
+      <div class="ingredient">
+        <img src="cashew.jpg" alt="Cashews">
+        <h3>Cashew – Bone Strength & Healthy Fats</h3>
+      </div>
+      <div class="ingredient">
+        <img src="quinoa.jpg" alt="Quinoa">
+        <h3>Quinoa – Complete Protein & Digestion</h3>
+      </div>
+      <div class="ingredient">
+        <img src="oatmilk.jpg" alt="Oat Milk">
+        <h3>Oat Milk – Fiber & Cholesterol Control</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" style="text-align:center">
+    <h2>Buy Now – ₹249</h2>
+    <p>The ultimate energy bar for rebels who care about health.</p>
+    <button onclick="payNow()">Pay Now</button>
+  </section>
+
+  <footer>
+    &copy; 2025 Rebel Power Bar – Powered by Panacea Co.
+  </footer>
+
+  <script>
+    function payNow() {
+      const options = {
+        key: "YOUR_RAZORPAY_KEY", // Replace this with your Razorpay key
+        amount: 19900, // Amount in paise
+        currency: "INR",
+        name: "Rebel Power Bar",
+        description: "Purchase",
+        image: "REBEL.jpg",
+        handler: function (response) {
+          alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+        },
+        prefill: {
+          name: "",
+          email: "",
+          contact: ""
+        },
+        theme: {
+          color: "#730202"
+        }
+      };
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+  </script>
+</body>
+</html>
